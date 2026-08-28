@@ -6,11 +6,18 @@
 #
 # The suite runs against a fake client and makes no API calls, so it needs no
 # secret and costs nothing.
+#
+# Also runs on push. Two reasons: `main` should be verified after a merge, not
+# only before it, and a repository's first commit has no pull request to run
+# on — the branch ruleset requires these contexts, and a context that has never
+# reported cannot be satisfied. Running on push is what lets the initial commit
+# land.
 # ============================================================================
 
 name: tests
 
 on:
+  push:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 

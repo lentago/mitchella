@@ -13,11 +13,18 @@
 # holdover from when this job called a reusable workflow, which GitHub
 # Actions reports as "<caller job> / <called job>"). Changing it deadlocks
 # every PR until the ruleset is updated to match.
+#
+# Also runs on push. Two reasons: `main` should be verified after a merge, not
+# only before it, and a repository's first commit has no pull request to run
+# on — the branch ruleset requires these contexts, and a context that has never
+# reported cannot be satisfied. Running on push is what lets the initial commit
+# land.
 # ============================================================================
 
 name: docs-check
 
 on:
+  push:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 

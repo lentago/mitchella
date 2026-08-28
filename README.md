@@ -61,6 +61,9 @@ Distinct-asker counts turn "is this worth documenting?" into a measurement, and
 a person closes the gap. See
 [ADR-0004](docs/adr/0004-improvement-is-a-pull-request.md).
 
+See [ROADMAP.md](ROADMAP.md) for what MVP means here, what is missing, and the
+order it is being built in.
+
 ## What it is not
 
 - **It cannot change anything.** No tools, no write access, no submit button —

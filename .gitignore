@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.DS_Store
+*.log
+
+# Turn logs are operational data, not source. The nightly promotion job reads
+# them from disk; the corpus PRs it opens are the part that belongs in git.
+var/
+*.jsonl
+
+# Your estate's own secrets never belong here — record WHERE a credential
+# lives, never the credential. A backstop, not permission.
+*.env
+.env.*
+!.env.example
+*.pem
+*.key

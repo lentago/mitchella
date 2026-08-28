@@ -1,0 +1,24 @@
+# Declared incidents — the manual override channel.
+#
+# The lowest-technology input to the signal plane and the highest-value one.
+# Someone on the desk knows about an outage before the monitoring does more
+# often than anyone likes to admit, and this file is how that knowledge reaches
+# every surface at once. Flip `open` to true, and the next question that
+# mentions one of the `subjects` leads with the incident instead of a routine
+# corpus answer.
+#
+# `subjects` are matched as plain substrings against the question text, so keep
+# them short and characteristic. A missed match degrades to a normal answer; a
+# false match tells someone their working system is broken, which is worse — so
+# prefer specific subjects over broad ones.
+#
+# Delete or set `open = false` when it is over. Nothing expires this for you.
+
+# [[incident]]
+# id       = "2026-08-27-grafana"
+# title    = "Grafana Cloud is not loading dashboards"
+# status   = "investigating"
+# open     = true
+# subjects = ["grafana", "dashboard"]
+# detail   = "Provider-side. Alerting is unaffected; the pane is not."
+# url      = "https://status.grafana.com/"

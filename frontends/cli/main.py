@@ -29,7 +29,7 @@ _ICON = {
 
 
 def build_engine(config: Config) -> Engine:
-    corpus = load_corpus(config.corpus_dir)
+    corpus = load_corpus(config.corpus_dir, config.corpus_source)
     providers = [ManualOverrideProvider(config.incidents_file)]
     if config.drosera_status:
         providers.append(DroseraStatusProvider(config.drosera_status))
@@ -87,7 +87,7 @@ def main(argv: list[str] | None = None) -> int:
     config = Config.from_env()
 
     if args.corpus_info:
-        corpus = load_corpus(config.corpus_dir)
+        corpus = load_corpus(config.corpus_dir, config.corpus_source)
         print(f"entries:     {len(corpus.entries)}")
         print(f"fingerprint: {corpus.fingerprint}")
         print(f"~tokens:     {corpus.estimated_tokens:,}")

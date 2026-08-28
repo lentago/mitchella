@@ -35,6 +35,10 @@ class Config:
     cache_ttl: str = "1h"
 
     corpus_dir: str = "corpus"
+    #: Which document shape `corpus_dir` holds: "flat" (this repo's own
+    #: question/answer format) or "wiki" (a long-form documentation tree,
+    #: read in place and never copied here).
+    corpus_source: str = "flat"
     incidents_file: str = "signals/incidents.toml"
     #: URL or local path to drosera's status.json. Empty disables the provider.
     drosera_status: str = ""
@@ -52,6 +56,7 @@ class Config:
             max_tokens=int(os.environ.get("MITCHELLA_MAX_TOKENS", "16000")),
             cache_ttl=os.environ.get("MITCHELLA_CACHE_TTL", "1h"),
             corpus_dir=os.environ.get("MITCHELLA_CORPUS_DIR", "corpus"),
+            corpus_source=os.environ.get("MITCHELLA_CORPUS_SOURCE", "flat"),
             incidents_file=os.environ.get("MITCHELLA_INCIDENTS", "signals/incidents.toml"),
             drosera_status=os.environ.get("MITCHELLA_DROSERA_STATUS", ""),
             turnlog_path=os.environ.get("MITCHELLA_TURNLOG", "var/turns.jsonl"),

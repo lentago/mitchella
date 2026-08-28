@@ -52,12 +52,13 @@ discipline: the cached prefix must be byte-stable, so nothing per-request ever
 renders into the system prompt, and a test enforces that. See
 [ADR-0002](docs/adr/0002-whole-corpus-in-the-prompt.md).
 
-**3. It improves by opening pull requests.**
-A nightly job clusters the questions the desk couldn't answer and proposes
-corpus entries on a branch. A human merges; the merge is the deploy. Improvement
-is a reviewable diff in git history rather than state that drifts somewhere
-unreadable — the same shape as [claytonia](https://github.com/lentago/claytonia),
-where an agent proposes and a human always merges. See
+**3. It improves by measuring demand, not by learning in place.**
+The desk logs every turn and reports which questions it couldn't answer, how
+many distinct people asked, and what kind of work would close each gap. It
+writes no documentation: for a curated corpus, an agent drafting pages about an
+estate it has only read *about* produces confident text with nothing behind it.
+Distinct-asker counts turn "is this worth documenting?" into a measurement, and
+a person closes the gap. See
 [ADR-0004](docs/adr/0004-improvement-is-a-pull-request.md).
 
 ## What it is not
@@ -113,6 +114,25 @@ the monitoring does more often than anyone likes to admit.
 Wire in drosera's live feed with `MITCHELLA_DROSERA_STATUS` (a URL, or a local
 path to a `status.json` from a drosera build).
 
+### Pointing at a documentation tree elsewhere
+
+The corpus does not have to live in this repo. The `wiki` source reads a tree of
+long-form markdown pages in place, deriving ids from paths, titles from the
+first `# H1`, tags from frontmatter plus the containing directory, and a
+`certainty` tier from an evidence-basis notice if the tree uses one. Nothing is
+copied here, which matters when the documentation and the bot have different
+homes or different confidentiality rules.
+
+```bash
+MITCHELLA_CORPUS_DIR=~/path/to/wiki MITCHELLA_CORPUS_SOURCE=wiki \
+  python -m frontends.cli.main --corpus-info
+```
+
+Where a tree marks its pages as inferred rather than verified, the desk is
+required to preserve that: it reports what the documentation records rather
+than asserting it as fact, and it never turns an absence in the documentation
+into a claim that something does not exist.
+
 ### Slack
 
 ```bash
@@ -125,12 +145,16 @@ Socket Mode, so no public URL and no inbound firewall change. Scopes:
 `app_mentions:read`, `chat:write`, `im:history`, `im:read`, `im:write`. Event
 subscriptions: `app_mention`, `message.im`.
 
-### The nightly loop
+### The demand loop
 
 ```bash
-python -m jobs.promote --since 1            # dry run; proposes nothing
-python -m jobs.promote --since 1 --write    # writes entries onto a branch
+python -m jobs.promote --since 7               # print the report
+python -m jobs.promote --since 7 --out demand.md
 ```
+
+Reports unanswered questions clustered by underlying need, ranked by distinct
+askers, each routed to the kind of work that would close it (`intake`,
+`research`, `verification`, `decision`, `ticket`). It writes no documentation.
 
 ## Layout
 
@@ -140,10 +164,12 @@ python -m jobs.promote --since 1 --write    # writes entries onto a branch
 | `mitchella/engine.py` | Prompt assembly, the incident gate, the API call |
 | `mitchella/signals.py` | Live state; degrades to *unknown*, never to *healthy* |
 | `mitchella/corpus.py` | Markdown → one deterministic, cacheable block |
-| `corpus/` | The documentation, in git. Changes on merge and nowhere else |
+| `mitchella/sources.py` | Document shapes: `flat` (this repo) and `wiki` (a tree elsewhere) |
+| `corpus/` | The desk's own entries. Changes on merge and nowhere else |
 | `signals/incidents.toml` | The manual override channel |
+| `frontends/slack/render.py` | Block rendering, testable without a workspace |
 | `frontends/slack/`, `frontends/cli/` | The clients |
-| `jobs/promote.py` | The nightly improvement loop |
+| `jobs/promote.py` | The demand loop |
 | `docs/adr/` | Why it is shaped this way |
 
 ## Configuration
@@ -155,6 +181,8 @@ All optional; every value has a working default.
 | `MITCHELLA_MODEL` | `claude-opus-5` | One model for every stage — caches are model-scoped, so a cheap-classifier cascade forfeits prefix reuse |
 | `MITCHELLA_EFFORT` | `high` | Triage is intelligence-sensitive. `medium` is the documented step-down to *measure*, not to assume |
 | `MITCHELLA_CACHE_TTL` | `1h` | A desk goes quiet between questions; a 5-minute entry would expire in the gaps |
+| `MITCHELLA_CORPUS_DIR` | `corpus` | Where the documents are. May point outside this repo |
+| `MITCHELLA_CORPUS_SOURCE` | `flat` | `flat` (this repo's format) or `wiki` (a documentation tree) |
 | `MITCHELLA_DROSERA_STATUS` | *(unset)* | URL or path to drosera's `status.json` |
 | `MITCHELLA_INCIDENTS` | `signals/incidents.toml` | The manual override file |
 | `MITCHELLA_TURNLOG` | `var/turns.jsonl` | Feeds `jobs/promote.py` |

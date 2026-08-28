@@ -4,9 +4,9 @@ Socket Mode, so the demo needs no public URL, no tunnel, and no inbound
 firewall change. Two entry points: an app mention in a channel, and a direct
 message.
 
-Like the CLI, this imports `mitchella` and nothing deeper. Everything
-Slack-specific — block rendering, event plumbing, the ephemeral caveat — stops
-at this directory.
+Like the CLI, this imports `mitchella` and nothing deeper. Block rendering
+lives in `render.py` so it can be tested without tokens or a workspace; this
+module is transport only.
 
 Setup:
 
@@ -28,71 +28,10 @@ from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
 from frontends.cli.main import build_engine
-from mitchella import Answer, AnswerKind, Config, Query, opaque_ref
+from frontends.slack.render import to_blocks
+from mitchella import Config, Query, opaque_ref
 
 log = logging.getLogger("mitchella.slack")
-
-_HEADER = {
-    AnswerKind.ANSWERED: None,
-    AnswerKind.INCIDENT: ":warning: *This looks like a live incident.*",
-    AnswerKind.ESCALATED: ":inbox_tray: *I can't answer this one — here's a ticket draft.*",
-    AnswerKind.DECLINED: None,
-}
-
-
-def to_blocks(answer: Answer) -> list[dict]:
-    """Render an Answer as Slack blocks.
-
-    The whole of mitchella's Slack-specific knowledge lives in this function.
-    """
-    blocks: list[dict] = []
-
-    header = _HEADER[answer.kind]
-    if header:
-        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": header}})
-
-    blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": answer.text or "_(no reply)_"}})
-
-    if answer.incidents:
-        lines = "\n".join(
-            f"• *{i.title}* — {i.status} _(via {i.source})_" + (f"\n  <{i.url}|more>" if i.url else "")
-            for i in answer.incidents
-        )
-        blocks.append({"type": "section", "text": {"type": "mrkdwn", "text": lines}})
-
-    if answer.ticket_draft:
-        d = answer.ticket_draft
-        blocks.append({"type": "divider"})
-        blocks.append({
-            "type": "section",
-            "text": {"type": "mrkdwn", "text": f"*{d.title}*  `{d.category}`\n```{d.body}```"},
-        })
-        # Deliberately not a "Submit" button. mitchella has no write access to
-        # any system; a human copies this into the tracker. Adding a button
-        # here would be adding a write path, and that is a different design.
-        blocks.append({
-            "type": "context",
-            "elements": [{"type": "mrkdwn", "text": "_Draft only — mitchella cannot file tickets._"}],
-        })
-
-    if answer.sources:
-        cited = "  ".join(f"`{s.doc_id}`" for s in answer.sources)
-        blocks.append({"type": "context", "elements": [{"type": "mrkdwn", "text": f"sources: {cited}"}]})
-
-    if answer.degraded_signals:
-        detail = "; ".join(answer.degraded_signals)
-        blocks.append({
-            "type": "context",
-            "elements": [{
-                "type": "mrkdwn",
-                # Never fake green: an unreachable signal makes the answer more
-                # cautious, and the reader is told why.
-                "text": f":grey_question: _Couldn't confirm current state ({detail}). Treat as unknown, not healthy._",
-            }],
-        })
-
-    return blocks
-
 
 def build_app() -> App:
     app = App(token=os.environ["SLACK_BOT_TOKEN"])

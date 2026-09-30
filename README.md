@@ -25,9 +25,10 @@ output; Claude writes the code. I'm an infrastructure operator, not a software
 engineer — please don't read this repo as a portfolio of coding ability.
 
 > 🌱 This repo is one exhibit in **[Lentago Labs](https://github.com/lentago)** —
-> a team learning lab where IT-operations people build, break, and operate real
-> systems at deliberately non-critical stakes. mitchella's job in that estate is
-> the **front desk**: it answers from documentation, defers to
+> a pro-bono operations practice for organizations that run on volunteers,
+> donations, and one overworked tech person. We practice what we publish: our
+> own estate runs on these systems, in the open. mitchella's job in that estate
+> is the **front desk**: it answers from documentation, defers to
 > [drosera](https://github.com/lentago/drosera) on what is happening right now,
 > and hands everything else to a person.
 

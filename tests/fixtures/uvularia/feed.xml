@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>urn:uvularia:corpus:3f86795c706afe3e5b3617abba18a62720fd13bd9a93a8e2607a4037a24519f9</id>
+  <title>Announcements</title>
+  <updated>2026-09-12T08:00:00Z</updated>
+  <entry>
+    <id>urn:uvularia:record:2026-09-12-fall-trail-conditions-and-sensor-update</id>
+    <title>Fall trail conditions and sensor update</title>
+    <updated>2026-09-12T08:00:00Z</updated>
+    <content type="text"># Fall trail conditions and sensor update All trails are open. The Route 9 and Cedar Marsh river sensors were serviced this month and are reporting normally. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+  <entry>
+    <id>urn:uvularia:record:2026-06-22-high-water-ridge-loop-ford-closed</id>
+    <title>High water: Ridge Loop ford closed</title>
+    <updated>2026-06-22T06:30:00Z</updated>
+    <content type="text"># High water: Ridge Loop ford closed The river-sensor network shows the brook above the safe ford level. The Ridge Loop ford is closed; use the footbridge route until further notice. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+  <entry>
+    <id>urn:uvularia:record:2026-03-18-spring-trail-reopening</id>
+    <title>Spring trail reopening</title>
+    <updated>2026-03-18T07:30:00Z</updated>
+    <content type="text"># Spring trail reopening Trails are open for the season. Expect mud on the Lower Brook Trail in early spring and check the status page before high water. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+  <entry>
+    <id>urn:uvularia:record:2025-10-10-fall-foliage-walk-and-visitor-center-hours</id>
+    <title>Fall foliage walk and visitor-center hours</title>
+    <updated>2025-10-10T08:00:00Z</updated>
+    <content type="text"># Fall foliage walk and visitor-center hours Join a guided foliage walk on the Ridge Loop this month. The visitor center is open weekends; see the status page for times. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+  <entry>
+    <id>urn:uvularia:record:2025-07-18-lower-brook-trail-reopened</id>
+    <title>Lower Brook Trail reopened</title>
+    <updated>2025-07-18T16:00:00Z</updated>
+    <content type="text"># Lower Brook Trail reopened The Lower Brook Trail is open again. Water levels have returned to normal and staff have inspected the crossing. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+  <entry>
+    <id>urn:uvularia:record:2025-06-05-high-water-lower-brook-trail-closed</id>
+    <title>High water: Lower Brook Trail closed</title>
+    <updated>2025-06-05T06:45:00Z</updated>
+    <content type="text"># High water: Lower Brook Trail closed River-sensor readings at the Route 9 gauge crossed the high-water threshold overnight. The Lower Brook Trail is closed until the water recedes and staff inspect the crossing. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+  <entry>
+    <id>urn:uvularia:record:2025-03-20-spring-trail-reopening</id>
+    <title>Spring trail reopening</title>
+    <updated>2025-03-20T07:30:00Z</updated>
+    <content type="text"># Spring trail reopening All trails are open for the season. The Lower Brook Trail may close on short notice during high water; the current status is always posted. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+  <entry>
+    <id>urn:uvularia:record:2024-11-15-visitor-center-shifts-to-winter-hours</id>
+    <title>Visitor center shifts to winter hours</title>
+    <updated>2024-11-15T08:00:00Z</updated>
+    <content type="text"># Visitor center shifts to winter hours The Watershed Visitor Center is open Saturdays and Sundays, 10 a.m. to 3 p.m., through March. Trails remain open dawn to dusk. Posted by Stillwater Brook. Current trail and visitor-center status is kept up to date at https://stillwaterbrook.example.org/status.</content>
+  </entry>
+</feed>

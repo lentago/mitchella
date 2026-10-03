@@ -7,12 +7,15 @@ from .contract import (
 from .corpus import Corpus, load as load_corpus
 from .entry import CorpusError, Entry
 from .engine import Engine
-from .signals import DroseraStatusProvider, ManualOverrideProvider, SignalPlane
+from .signals import (
+    AnnouncementProvider, DroseraStatusProvider, ManualOverrideProvider,
+    SignalPlane, StandingProvider,
+)
 from .turnlog import TurnLog
 
 __all__ = [
-    "Answer", "AnswerKind", "Config", "Corpus", "CorpusError", "DroseraStatusProvider",
-    "Engine", "Entry", "Incident",
-    "ManualOverrideProvider", "Query", "SignalPlane", "Source", "TicketDraft",
-    "TurnLog", "Usage", "load_corpus", "opaque_ref",
+    "AnnouncementProvider", "Answer", "AnswerKind", "Config", "Corpus", "CorpusError",
+    "DroseraStatusProvider", "Engine", "Entry", "Incident",
+    "ManualOverrideProvider", "Query", "SignalPlane", "Source", "StandingProvider",
+    "TicketDraft", "TurnLog", "Usage", "load_corpus", "opaque_ref",
 ]

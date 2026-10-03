@@ -137,16 +137,29 @@ def load(corpus_dir: str | Path, source: str = "flat", **kwargs) -> Corpus:
     Determinism is a requirement, not a nicety: entries are sorted by id and
     rendered with fixed separators, so the same tree always produces the same
     bytes — and therefore the same cache entry — on every process on every host.
+
+    Most sources read a *directory* and the fingerprint is a hash of the
+    rendered bytes. A source may instead read a single *artifact* — a URL or a
+    file — and declare its own fingerprint; it says so with `loader.reads ==
+    "artifact"` and returns `(entries, fingerprint)`. That is the one
+    generalisation the `bundle` source needs (ADR-0006), and directory sources
+    are unaffected.
     """
-    root = Path(corpus_dir)
-    if not root.is_dir():
-        raise CorpusError(f"corpus directory not found: {root}")
     if source not in LOADERS:
         raise CorpusError(f"unknown corpus source {source!r}; known: {sorted(LOADERS)}")
 
-    entries = tuple(sorted(LOADERS[source](root, **kwargs), key=lambda e: e.doc_id))
+    loader = LOADERS[source]
+    if getattr(loader, "reads", "directory") == "artifact":
+        entries, declared_fingerprint = loader(str(corpus_dir), **kwargs)
+    else:
+        root = Path(corpus_dir)
+        if not root.is_dir():
+            raise CorpusError(f"corpus directory not found: {root}")
+        entries, declared_fingerprint = loader(root, **kwargs), None
+
+    entries = tuple(sorted(entries, key=lambda e: e.doc_id))
     if not entries:
-        raise CorpusError(f"no corpus documents found under {root} (source={source})")
+        raise CorpusError(f"no corpus documents found at {corpus_dir} (source={source})")
 
     seen: set[str] = set()
     for entry in entries:
@@ -155,9 +168,12 @@ def load(corpus_dir: str | Path, source: str = "flat", **kwargs) -> Corpus:
         seen.add(entry.doc_id)
 
     rendered = _render(entries)
+    # A declared fingerprint (the publisher's digest) pins the exact artifact;
+    # otherwise the rendered bytes are their own fingerprint.
+    fingerprint = declared_fingerprint or hashlib.sha256(rendered.encode("utf-8")).hexdigest()[:16]
     return Corpus(
         entries=entries,
         rendered=rendered,
-        fingerprint=hashlib.sha256(rendered.encode("utf-8")).hexdigest()[:16],
+        fingerprint=fingerprint,
         source=source,
     )

@@ -5,26 +5,40 @@ documentation tree is laid out; the corpus knows nothing about any of them. The
 acceptance test is the familiar one — adding a source must not touch existing
 sources, and must not touch `corpus.py` at all.
 
-Two sources ship today:
+Three sources ship today:
 
-- `flat`  — this repo's own `corpus/*.md`: one question, one answer, explicit
-            frontmatter. The format to write *for* a desk.
-- `wiki`  — an existing documentation tree of long-form pages with an `# H1`
-            title. The format you already *have*, pointed at as-is, with
-            nothing copied and nothing rewritten.
+- `flat`   — this repo's own `corpus/*.md`: one question, one answer, explicit
+             frontmatter. The format to write *for* a desk.
+- `wiki`   — an existing documentation tree of long-form pages with an `# H1`
+             title. The format you already *have*, pointed at as-is, with
+             nothing copied and nothing rewritten.
+- `bundle` — a single published JSON artifact (uvularia's corpus bundle),
+             addressed by URL or path and pinned by the digest it was named by.
+
+`flat` and `wiki` read a *directory*. `bundle` reads one *artifact* — a URL or a
+file — and declares its own fingerprint rather than having one computed from the
+rendered bytes. A loader announces which it needs with a `reads` attribute
+(`"directory"`, the default, or `"artifact"`); `corpus.load` honours it. That is
+the one seam the bundle source cuts into `corpus.py`, and it is documented in
+ADR-0006. Dir-based sources are still added without touching `corpus.py`.
 
 The `wiki` source exists so a corpus can live outside this repo entirely. Point
 `MITCHELLA_CORPUS_DIR` at a checkout somewhere else and no document is ever
 copied in here — which matters when the documentation and the bot have
-different homes, different licences, or different confidentiality rules.
+different homes, different licences, or different confidentiality rules. The
+`bundle` source goes one step further: the corpus need not be a checkout at all,
+only a URL that a publisher keeps current.
 """
 
 from __future__ import annotations
 
+import json
 import re
+import urllib.error
+import urllib.request
 from pathlib import Path
 
-from .entry import Entry
+from .entry import CorpusError, Entry
 
 #: A page carrying this phrase is telling the reader its contents are inferred
 #: from records rather than observed on a live system. That is a load-bearing
@@ -143,5 +157,88 @@ def load_wiki(root: Path, *, ignore: tuple[str, ...] = ()) -> tuple[Entry, ...]:
     return tuple(entries)
 
 
+#: Required keys on a bundle entry. The bundle is already in mitchella's entry
+#: shape (uvularia `bundle.schema.json`), so there is no frontmatter to parse —
+#: only a shape to verify. A record missing any of these is a malformed bundle,
+#: and a malformed corpus fails loudly rather than loading half-read.
+_BUNDLE_FIELDS = ("doc_id", "title", "tags", "volatility", "body", "path", "certainty")
+
+
+def _read_artifact(location: str, timeout: float) -> str:
+    """Read a single artifact from a URL or a local path.
+
+    Unlike a signal source, a corpus that cannot be read is fatal, not a
+    degradation: there is nothing to answer *from*. So this raises `CorpusError`
+    rather than returning an "unknown", matching how `corpus.load` already
+    treats a missing directory.
+    """
+    try:
+        if location.startswith(("http://", "https://")):
+            with urllib.request.urlopen(location, timeout=timeout) as resp:
+                return resp.read().decode("utf-8")
+        return Path(location).read_text(encoding="utf-8")
+    except (OSError, urllib.error.URLError) as exc:
+        raise CorpusError(f"could not read bundle at {location}: {exc}") from exc
+
+
+def _entry_from_bundle_record(rec: dict) -> Entry:
+    missing = [k for k in _BUNDLE_FIELDS if k not in rec]
+    if missing:
+        raise CorpusError(f"bundle record {rec.get('doc_id', '?')!r} missing {missing}")
+    volatility = str(rec["volatility"])
+    if volatility not in ("stable", "live"):
+        raise CorpusError(
+            f"bundle record {rec['doc_id']!r}: volatility must be 'stable' or 'live'"
+        )
+    return Entry(
+        doc_id=str(rec["doc_id"]),
+        title=str(rec["title"]),
+        tags=tuple(rec["tags"]),
+        volatility=volatility,
+        certainty=str(rec["certainty"]),
+        body=str(rec["body"]),
+        path=str(rec["path"]),
+    )
+
+
+def load_bundle(location: str, *, timeout: float = 5.0) -> tuple[tuple[Entry, ...], str]:
+    """A published corpus bundle: one JSON artifact, pinned by its digest.
+
+    The bundle is how a vault hands mitchella a corpus without handing over the
+    vault (uvularia ADR-0009): a URL the publisher keeps current, carrying every
+    published record already in this package's entry shape, plus the `digest`
+    it was named by.
+
+    Three things set it apart from the directory sources, and all three are the
+    point:
+
+    - **It is addressed by URL or path**, so the corpus need not live on disk.
+    - **The digest is the fingerprint.** A consumer pins exactly the artifact
+      the vault published; two hosts that fetched the same URL agree on the
+      cache prefix without re-deriving it. Returned alongside the entries so
+      `corpus.load` can use it in place of a hash of the rendered bytes.
+    - **`archived` records are dropped.** They stay in the vault's record but
+      leave the prompt — the bundle's way of letting old documents age out of
+      context without being forgotten (ADR-0009's `archived` flag).
+    """
+    try:
+        payload = json.loads(_read_artifact(location, timeout))
+    except json.JSONDecodeError as exc:
+        raise CorpusError(f"bundle at {location} is not valid JSON: {exc}") from exc
+    if not isinstance(payload, dict) or "digest" not in payload or "records" not in payload:
+        raise CorpusError(f"bundle at {location} is missing 'digest'/'records'")
+
+    entries = tuple(
+        _entry_from_bundle_record(rec)
+        for rec in payload["records"]
+        if not rec.get("archived")
+    )
+    return entries, str(payload["digest"])
+
+
+#: This source reads one artifact (a URL or file), not a directory, and brings
+#: its own fingerprint. `corpus.load` branches on this.
+load_bundle.reads = "artifact"
+
 #: Source name -> loader. Adding a source is one entry here and one function.
-LOADERS = {"flat": load_flat, "wiki": load_wiki}
+LOADERS = {"flat": load_flat, "wiki": load_wiki, "bundle": load_bundle}

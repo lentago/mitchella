@@ -7,17 +7,20 @@
 # The suite runs against a fake client and makes no API calls, so it needs no
 # secret and costs nothing.
 #
-# Also runs on push. Two reasons: `main` should be verified after a merge, not
+# Runs on push to `main` only (pull requests cover every other branch; a bare
+# `push:` ran each PR commit twice). Two reasons it runs on push at all: `main` should be verified after a merge, not
 # only before it, and a repository's first commit has no pull request to run
 # on — the branch ruleset requires these contexts, and a context that has never
 # reported cannot be satisfied. Running on push is what lets the initial commit
-# land.
+# land. Branch pushes are
+# covered by the pull_request trigger, so they need no push run.
 # ============================================================================
 
 name: tests
 
 on:
   push:
+    branches: [main]
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
 

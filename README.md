@@ -2,7 +2,7 @@
      Regenerate there; do not hand-edit the banner or badge URLs. -->
 <a href="https://lentago.dev"><img src="./assets/banner.svg" alt="mitchella — Estate front desk · signals first, then the docs" width="100%"></a>
 
-[![main](https://img.shields.io/github/check-runs/lentago/mitchella/main?style=flat-square&labelColor=0e2b1a&color=1b4b2e&label=main)](https://github.com/lentago/mitchella/actions) [![License](https://img.shields.io/github/license/lentago/mitchella?style=flat-square&labelColor=0e2b1a&color=1b4b2e)](https://github.com/lentago/mitchella/blob/main/LICENSE) [![Ask DeepWiki](https://img.shields.io/badge/Ask-DeepWiki-1b4b2e?style=flat-square&labelColor=0e2b1a&logo=readthedocs&logoColor=E0A81C)](https://deepwiki.com/lentago/mitchella)
+[![main](https://img.shields.io/github/check-runs/lentago/mitchella/main?style=flat-square&labelColor=0e2b1a&color=1b4b2e&label=main)](https://github.com/lentago/mitchella/actions) [![License](https://img.shields.io/github/license/lentago/mitchella?style=flat-square&labelColor=0e2b1a&color=1b4b2e)](https://github.com/lentago/mitchella/blob/main/LICENSE)
 
 ![Claude](https://img.shields.io/badge/Claude-1b4b2e?style=flat-square&labelColor=0e2b1a&logo=anthropic&logoColor=E0A81C) ![Python](https://img.shields.io/badge/Python-1b4b2e?style=flat-square&labelColor=0e2b1a&logo=python&logoColor=E0A81C) ![Slack](https://img.shields.io/badge/Slack-1b4b2e?style=flat-square&labelColor=0e2b1a&logo=slack&logoColor=E0A81C) ![Grafana](https://img.shields.io/badge/Grafana-1b4b2e?style=flat-square&labelColor=0e2b1a&logo=grafana&logoColor=E0A81C)
 

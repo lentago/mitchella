@@ -20,38 +20,22 @@
 
     <!-- Genus watermark, bleeding off the right edge -->
     <g transform="translate(896,-46) scale(6)" opacity="0.085">
-<g fill="none" stroke="#f3f0e8" stroke-width="2.2" stroke-linejoin="round">
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(72 32 32)"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(144 32 32)"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(216 32 32)"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(288 32 32)"></path>
-  </g>
-  <g stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" fill="none">
-    <path d="M32 31C31 24 33 17 32 11"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(36 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(72 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(108 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(144 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(180 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(216 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(252 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(288 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(324 32 32)"></path>
-  </g>
-  <g fill="#E0A81C">
-    <circle cx="32" cy="10" r="2.3"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(36 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(72 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(108 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(144 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(180 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(216 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(252 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(288 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(324 32 32)"></circle>
-  </g>
-  <circle cx="32" cy="32" r="4.4" fill="#0e2b1a" stroke="#f3f0e8" stroke-width="1.4"></circle>
+<path d="M32 60V46" stroke="#f3f0e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="32" cy="43" r="3.2" stroke="#f3f0e8" stroke-width="2.2"></circle>
+  <path d="M22.65 39C26.5 41 29.8 42 32 43" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M18.38 17.22C19.21 16.22 20.13 16 21 16C21.87 16 22.79 16.22 23.62 17.22C24.44 18.23 24.76 20.86 25.95 22.05C27.14 23.24 29.77 23.56 30.78 24.38C31.78 25.21 32 26.13 32 27C32 27.87 31.78 28.79 30.78 29.62C29.77 30.44 27.14 30.76 25.95 31.95C24.76 33.14 24.44 35.77 23.62 36.78C22.79 37.78 21.87 38 21 38C20.13 38 19.21 37.78 18.38 36.78C17.56 35.77 17.24 33.14 16.05 31.95C14.86 30.76 12.23 30.44 11.22 29.62C10.22 28.79 10 27.87 10 27C10 26.13 10.22 25.21 11.22 24.38C12.23 23.56 14.86 23.24 16.05 22.05C17.24 20.86 17.56 18.23 18.38 17.22Z" stroke="#f3f0e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M21 22.5L21 19.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M25.5 27L28.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M21 31.5L21 34.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M16.5 27L13.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="21" cy="27" r="2" fill="#E0A81C"></circle>
+  <path d="M41.35 39C37.5 41 34.2 42 32 43" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M40.38 17.22C41.21 16.22 42.13 16 43 16C43.87 16 44.79 16.22 45.62 17.22C46.44 18.23 46.76 20.86 47.95 22.05C49.14 23.24 51.77 23.56 52.78 24.38C53.78 25.21 54 26.13 54 27C54 27.87 53.78 28.79 52.78 29.62C51.77 30.44 49.14 30.76 47.95 31.95C46.76 33.14 46.44 35.77 45.62 36.78C44.79 37.78 43.87 38 43 38C42.13 38 41.21 37.78 40.38 36.78C39.56 35.77 39.24 33.14 38.05 31.95C36.86 30.76 34.23 30.44 33.22 29.62C32.22 28.79 32 27.87 32 27C32 26.13 32.22 25.21 33.22 24.38C34.23 23.56 36.86 23.24 38.05 22.05C39.24 20.86 39.56 18.23 40.38 17.22Z" stroke="#f3f0e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M43 22.5L43 19.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M47.5 27L50.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M43 31.5L43 34.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M38.5 27L35.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="43" cy="27" r="2" fill="#E0A81C"></circle>
     </g>
 
     <!-- Eyebrow: gold diamond + category -->
@@ -59,39 +43,23 @@
 
     <!-- Genus mark chip -->
     <g transform="translate(80,110) scale(1.25)">
-<rect width="64" height="64" fill="#0e2b1a"></rect>
-  <g fill="none" stroke="#f3f0e8" stroke-width="2.2" stroke-linejoin="round">
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(72 32 32)"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(144 32 32)"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(216 32 32)"></path>
-    <path d="M32 31C24 31 19 26 19 18C19 10 25 5 32 5C39 5 45 10 45 18C45 26 40 31 32 31Z" transform="rotate(288 32 32)"></path>
-  </g>
-  <g stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" fill="none">
-    <path d="M32 31C31 24 33 17 32 11"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(36 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(72 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(108 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(144 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(180 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(216 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(252 32 32)"></path>
-    <path d="M32 31C31 24 33 17 32 11" transform="rotate(288 32 32)"></path>
-    <path d="M32 31C31 27 33 23 32 19" transform="rotate(324 32 32)"></path>
-  </g>
-  <g fill="#E0A81C">
-    <circle cx="32" cy="10" r="2.3"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(36 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(72 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(108 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(144 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(180 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(216 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(252 32 32)"></circle>
-    <circle cx="32" cy="10" r="2.3" transform="rotate(288 32 32)"></circle>
-    <circle cx="32" cy="18" r="2.3" transform="rotate(324 32 32)"></circle>
-  </g>
-  <circle cx="32" cy="32" r="4.4" fill="#0e2b1a" stroke="#f3f0e8" stroke-width="1.4"></circle>
+<rect width="64" height="64" rx="12" ry="12" fill="#0e2b1a"></rect>
+  <path d="M32 60V46" stroke="#f3f0e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="32" cy="43" r="3.2" stroke="#f3f0e8" stroke-width="2.2"></circle>
+  <path d="M22.65 39C26.5 41 29.8 42 32 43" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M18.38 17.22C19.21 16.22 20.13 16 21 16C21.87 16 22.79 16.22 23.62 17.22C24.44 18.23 24.76 20.86 25.95 22.05C27.14 23.24 29.77 23.56 30.78 24.38C31.78 25.21 32 26.13 32 27C32 27.87 31.78 28.79 30.78 29.62C29.77 30.44 27.14 30.76 25.95 31.95C24.76 33.14 24.44 35.77 23.62 36.78C22.79 37.78 21.87 38 21 38C20.13 38 19.21 37.78 18.38 36.78C17.56 35.77 17.24 33.14 16.05 31.95C14.86 30.76 12.23 30.44 11.22 29.62C10.22 28.79 10 27.87 10 27C10 26.13 10.22 25.21 11.22 24.38C12.23 23.56 14.86 23.24 16.05 22.05C17.24 20.86 17.56 18.23 18.38 17.22Z" stroke="#f3f0e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M21 22.5L21 19.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M25.5 27L28.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M21 31.5L21 34.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M16.5 27L13.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="21" cy="27" r="2" fill="#E0A81C"></circle>
+  <path d="M41.35 39C37.5 41 34.2 42 32 43" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M40.38 17.22C41.21 16.22 42.13 16 43 16C43.87 16 44.79 16.22 45.62 17.22C46.44 18.23 46.76 20.86 47.95 22.05C49.14 23.24 51.77 23.56 52.78 24.38C53.78 25.21 54 26.13 54 27C54 27.87 53.78 28.79 52.78 29.62C51.77 30.44 49.14 30.76 47.95 31.95C46.76 33.14 46.44 35.77 45.62 36.78C44.79 37.78 43.87 38 43 38C42.13 38 41.21 37.78 40.38 36.78C39.56 35.77 39.24 33.14 38.05 31.95C36.86 30.76 34.23 30.44 33.22 29.62C32.22 28.79 32 27.87 32 27C32 26.13 32.22 25.21 33.22 24.38C34.23 23.56 36.86 23.24 38.05 22.05C39.24 20.86 39.56 18.23 40.38 17.22Z" stroke="#f3f0e8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M43 22.5L43 19.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M47.5 27L50.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M43 31.5L43 34.5" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M38.5 27L35.5 27" stroke="#cdd6d0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+  <circle cx="43" cy="27" r="2" fill="#E0A81C"></circle>
     </g>
 
     <text x="184" y="158" font-family="'Space Grotesk', system-ui, -apple-system, Segoe UI, sans-serif" font-weight="700" font-size="48" fill="#f3f0e8" letter-spacing="-1.6">mitchella</text>

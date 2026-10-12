@@ -17,7 +17,14 @@ flowers fuse into a single berry — several sources, one answer.
 
 Slack is the first surface. It is not the product: the core is UI-agnostic and
 the CLI ships alongside it, because a boundary with one implementation behind it
-is a boundary nobody has tested.
+is a boundary nobody has tested. The smallest desk this core staffs is already
+live, and it's small on purpose: the Ask box on a
+[uvularia](https://github.com/lentago/uvularia) records site, one website widget
+with the engine running as a
+[function in the client's own AWS account](https://github.com/lentago/uvularia/blob/main/templates/ask-function/README.md);
+mitchella is the full desk, with Slack and the CLI today, that website widget
+through uvularia, and email and a ticket system to come
+([ADR-0007](docs/adr/0007-first-front-desk-and-the-production-desk.md)).
 
 **Authorship:** The code and documentation in this repo are co-written with
 [Claude](https://claude.ai) (Anthropic). I direct the work and review the

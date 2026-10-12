@@ -12,12 +12,17 @@ issues hold the detail.
 
 Working: the engine, the corpus loader with two document shapes, the signal
 plane with honest degradation, the incident gate, the turn log, the demand loop,
-a CLI, and a Slack frontend. 35 tests, all against a fake client.
+a CLI, a Slack frontend, and, via uvularia's Ask function, a website widget.
+35 tests, all against a fake client.
 
 Not working, or not proven:
 
-- **No live API call has ever been made.** The request shape is checked against
-  the SDK signature; the round trip is not.
+- **Live elsewhere, not yet here.** The engine runs live as uvularia's
+  [Ask function](https://github.com/lentago/uvularia/blob/main/templates/ask-function/README.md),
+  a serverless Ask box in the client's own AWS account, though its live-answer
+  receipt is not yet recorded there. No live call has yet been made through
+  mitchella's own Slack or CLI front ends, which is what M1 covers
+  ([ADR-0007](docs/adr/0007-first-front-desk-and-the-production-desk.md)).
 - **No conversation.** Every question is answered with no memory of the previous
   one, so a thread follow-up cannot work.
 - **No write path.** An escalated answer produces a draft that a person retypes

@@ -15,7 +15,7 @@ don't make a meal of it.
 
 ## What this repo is
 
-A corpus-backed chat assistant for the lab estate. It answers operator
+A corpus-backed chat assistant for the Lentago estate. It answers operator
 questions from markdown in `corpus/`, checks live state before answering, and
 drafts a ticket for a human when it can't. Slack is the first frontend; the
 core is UI-agnostic.

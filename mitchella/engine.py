@@ -166,6 +166,9 @@ class Engine:
         }
 
     def _call(self, kwargs: dict[str, Any]) -> Any:
+        # The beta branch is the one proven live (2026-11-04, issue #1): the API
+        # accepted this exact request shape. The non-beta branch is the off
+        # switch and has not yet been sent live.
         if not self.config.refusal_fallback:
             return self.client.messages.create(**kwargs)
         return self.client.beta.messages.create(

@@ -17,12 +17,18 @@ a CLI, a Slack frontend, and, via uvularia's Ask function, a website widget.
 
 Not working, or not proven:
 
-- **Live elsewhere, not yet here.** The engine runs live as uvularia's
+- **Not yet live through Slack.** No live call has yet been made through the
+  Slack front end, which M1 still covers
+  ([ADR-0007](docs/adr/0007-first-front-desk-and-the-production-desk.md)). The
+  CLI made its first live round trip on 2026-11-04
+  ([receipt on #1](https://github.com/lentago/mitchella/issues/1#issuecomment-6641166966)):
+  two corpus questions answered, an uncovered one escalated with a ticket
+  draft, and the cached prefix read on every call after the first. A live
+  refusal has not been observed; that path is covered by the fake-client tests
+  only. The engine also runs live as uvularia's
   [Ask function](https://github.com/lentago/uvularia/blob/main/templates/ask-function/README.md),
   a serverless Ask box in the client's own AWS account, though its live-answer
-  receipt is not yet recorded there. No live call has yet been made through
-  mitchella's own Slack or CLI front ends, which is what M1 covers
-  ([ADR-0007](docs/adr/0007-first-front-desk-and-the-production-desk.md)).
+  receipt is not yet recorded there.
 - **No conversation.** Every question is answered with no memory of the previous
   one, so a thread follow-up cannot work.
 - **No write path.** An escalated answer produces a draft that a person retypes
